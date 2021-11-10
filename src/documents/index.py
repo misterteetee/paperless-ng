@@ -13,6 +13,7 @@ from whoosh.qparser import MultifieldParser
 from whoosh.qparser.dateparse import DateParserPlugin
 from whoosh.searching import ResultsPage, Searcher
 from whoosh.writing import AsyncWriter
+from whoosh.analysis import StandardAnalyzer
 
 from documents.models import Document
 
@@ -28,7 +29,7 @@ def get_schema():
         title=TEXT(
             sortable=True
         ),
-        content=TEXT(),
+        content=TEXT(analyzer=StandardAnalyzer(stoplist=None)),
         asn=NUMERIC(
             sortable=True
         ),
